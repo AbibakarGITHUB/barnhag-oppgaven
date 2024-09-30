@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+
+        // Lag en liste med 10 tall (mellom 1 og 7) som skal representere aldrene til barn i en barnehage. 
+        // Lag et input som legger til tall (et nytt barn i barnehagen) som blir lagt til i listen. 
+        // Loop igjennom listen og skjekk hvor mange som skal snart starte pÃ¥ skolen (de som er 6 eller over).
+        // Returner svaret i en div.
+
+        //Model
+        const numbers = [1,6,5,7,4,6,3,2,7,5];
+        let barn = 0;
+
+        //View
+        updateView();
+        function updateView() {
+            document.getElementById('app').innerHTML = /*HTML*/`
+            <span>Legg til barn i barnehagen:</span>
+            <input type="number" onchange="addNumber(this.value)">
+            <button onclick="checkAge()">Skjekk hvor mange som er klar for skole</button>
+            <div id="barnDiv"></div>           
+            `;
+
+        }
+        
+        //Controller
+        function addNumber(num){
+            numbers.push(num);
+            console.log(numbers);
+        }
+        function checkAge(){
+            barn = 0;
+            for (let index = 0; index < numbers.length; index++) {
+                if (numbers[index] >= 6){
+                    barn++;
+                    printBarn();
+                };
+            };
+            
+        }
+        function printBarn(){
+            document.getElementById('barnDiv').innerHTML = /*HTML*/`
+            Antall barn: ${barn}
+            `;
+            return;
+        }
+
+    </script>
+</body>
+</html>
